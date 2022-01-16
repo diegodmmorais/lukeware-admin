@@ -1,15 +1,7 @@
-// import '../styles/globals.scss'
-// import type { AppProps } from 'next/app'
-
-// function MyApp({ Component, pageProps }: AppProps) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp
-
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Head from "next/head";
 import "../styles/globals.scss";
+import "tailwindcss/tailwind.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
