@@ -3,7 +3,7 @@ export type ConteudoType = {
 };
 
 export type MenuItemType = {
-  readonly url: string;
+  readonly url?: string;
   readonly texto: string;
   readonly icone: any;
 };
