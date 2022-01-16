@@ -1,8 +1,20 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/template/Layout";
+import { MenuItemType } from "../types/Types";
 
-const Notificacoes: NextPage = () => {
+export async function getStaticProps() {
+  const resp = await fetch("http://localhost:3000/api/menus");
+  const menuItens = await resp.json();
+  return {
+    revalidate: 3600,
+    props: {
+      menuItens,
+    },
+  };
+}
+
+const Notificacoes = (props: { menuItens: MenuItemType[] }) => {
   return (
     <>
       <Head>
@@ -12,7 +24,11 @@ const Notificacoes: NextPage = () => {
       </Head>
 
       <main>
-        <Layout titulo="Notificações" subtitulo="Aqui esta suas notificações">
+        <Layout
+          titulo="Notificações"
+          subtitulo="Aqui esta suas notificações"
+          menuItens={props.menuItens}
+        >
           <h3>Notificações</h3>
         </Layout>
       </main>

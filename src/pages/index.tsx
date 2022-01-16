@@ -1,8 +1,20 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/template/Layout";
+import { MenuItemType } from "../types/Types";
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+  const resp = await fetch("http://localhost:3000/api/menus");
+  const menuItens = await resp.json();
+  return {
+    revalidate: 3600,
+    props: {
+      menuItens,
+    },
+  };
+}
+
+const Home = (props: { menuItens: MenuItemType[] }) => {
   return (
     <>
       <Head>
@@ -15,6 +27,7 @@ const Home: NextPage = () => {
         <Layout
           titulo="Pagina inicial"
           subtitulo="Estamos construindo conteudo"
+          menuItens={props.menuItens}
         >
           <h3>Pagina inicial</h3>
         </Layout>

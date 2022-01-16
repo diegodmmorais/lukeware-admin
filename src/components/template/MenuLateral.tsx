@@ -1,14 +1,32 @@
-import { IAjuste, ICasa, ISino } from "../icons";
+import { useEffect, useState } from "react";
+import { MenuItemType } from "../../types/Types";
+import { todosIcones } from "../icons";
 import MenuItem from "./MenuItem";
 
-export default function MenuLateral() {
+const MenuLateral = (props: { menuItens?: MenuItemType[] }) => {
+
+  function buscarIcone(icone: string): any {
+    return todosIcones.find((el) => el.key === icone)?.icon;
+  }
+
+  function renderizarMenu() {
+    return props.menuItens?.map((el, i) => {
+      return (
+        <MenuItem
+          key={Math.floor(Math.random() + 1000) + i}
+          url={el.url}
+          icone={buscarIcone(el.icone)}
+          texto={el.texto}
+        />
+      );
+    });
+  }
+
   return (
     <aside>
-      <ul>
-        <MenuItem url="/" icone={ICasa} texto="Início"/>
-        <MenuItem url="/ajustes" icone={IAjuste} texto="Ajustes"/>
-        <MenuItem url="/notificacoes" icone={ISino} texto="Notificações"/>
-      </ul>
+      <ul>{renderizarMenu()}</ul>
     </aside>
   );
-}
+};
+
+export default MenuLateral;
