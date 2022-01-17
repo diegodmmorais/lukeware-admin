@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../components/template/Layout";
+import useAppData from "../data/hook/UseAppData";
 import { MenuItemType } from "../types/Types";
 
 export async function getStaticProps() {
@@ -15,6 +16,8 @@ export async function getStaticProps() {
 }
 
 const Home = (props: { menuItens: MenuItemType[] }) => {
+  const { alterarTema } = useAppData();
+
   return (
     <>
       <Head>
@@ -29,7 +32,7 @@ const Home = (props: { menuItens: MenuItemType[] }) => {
           subtitulo="Estamos construindo conteudo"
           menuItens={props.menuItens}
         >
-          <h3>Pagina inicial</h3>
+          <button onClick={alterarTema}>Clique aqui</button>
         </Layout>
       </main>
     </>

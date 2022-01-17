@@ -16,3 +16,10 @@ export type TemplateType = {
   readonly subtitulo: string;
   readonly children?: any;
 };
+
+export type Tema = "dark" | "light";
+
+export type ContextType = {
+  tema?: Tema;
+  alterarTema?: () => void;
+};
