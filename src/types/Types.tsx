@@ -6,6 +6,8 @@ export type MenuItemType = {
   readonly url?: string;
   readonly texto: string;
   readonly icone: any;
+  readonly onClick?: () => void;
+  readonly className?: string;
 };
 
 export type TemplateType = {
